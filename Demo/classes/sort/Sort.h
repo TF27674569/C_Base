@@ -16,5 +16,8 @@ void selectSort(int number[],int length);
 // √∞≈›≈≈–Ú
 void bubbleSort(int num[],int length);
 
+// Ωªªª≈≈–Ú∑®
+void swapSort(int num[],int length);
+
 
 #endif /* DEMO_CLASSES_SORT_SORT_H_ */

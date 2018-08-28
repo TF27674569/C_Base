@@ -48,3 +48,17 @@ void bubbleSort(int num[], int length) {
 	}
 }
 
+// 交换排序法
+// 每次从第一个数比较到最后一个符合条件就交换
+void swapSort(int num[], int length) {
+	for (int i = 0; i < length; i++) {
+		for (int j = i+1; j < length; j++) {
+			if (num[j] < num[i]) {
+				int temp = num[i];
+				num[i] = num[j];
+				num[j] = temp;
+			}
+		}
+	}
+}
+
