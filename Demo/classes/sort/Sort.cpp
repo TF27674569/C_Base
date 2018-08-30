@@ -7,6 +7,13 @@
 
 #include "Sort.h"
 
+void print(int num[],int length){
+	for (int i = 0; i < length; i++) {
+			printf("%d ",num[i]);
+		}
+	printf("\n");
+}
+
 void selectSort(int num[], int length) {
 	// 第一次从第一个开始找出最小的和第一个交换
 	// 第一次从第二个开始找出最小的和第二个交换
@@ -61,4 +68,34 @@ void swapSort(int num[], int length) {
 		}
 	}
 }
+
+
+//插入排序
+void insertSort(int num[],int length){
+	// 源 9, 6, 3, 5, 7, 8, 1
+	//  9
+	//  6 9
+	//  3 6 9
+	//  3 5 6 9
+	//  3 5 6 7 9
+	//  3 5 6 7 8 9
+	//  1 3 5 6 7 8 9
+	int pos;
+	for (int i = 1; i < length; i++) {
+		int temp = num[i];
+		pos = i-1;
+
+		// 寻找插入的位置
+		while(pos>=0&&temp<num[pos]){
+			num[pos+1] = num[pos];
+			pos--;
+		}
+
+		print(num,length);
+		printf("temp %d \n",temp);
+		num[pos+1] = temp;
+	}
+}
+
+
 

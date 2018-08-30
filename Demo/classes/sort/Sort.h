@@ -19,5 +19,7 @@ void bubbleSort(int num[],int length);
 // 交换排序法
 void swapSort(int num[],int length);
 
+// 插入排序法
+void insertSort(int num[],int length);
 
 #endif /* DEMO_CLASSES_SORT_SORT_H_ */

@@ -1,0 +1,52 @@
+Eclipse下C语言的Socket编程问题总结
+
+
+一 操作系统问题
+	有些例程是Linux下的socket编程代码，一般文件头像这样：
+	#include <stdlib.h>  
+	#include <sys/types.h>  
+	#include <stdio.h>  
+	#include <sys/socket.h>  
+	#include <linux/in.h>  
+	#include <string.h>  
+	这个并不适合我目前的开发环境，C语言这点上也是比较麻烦，不像Java是跨平台的，你需要为不同的系统单独实现一个版本，java的native方法就是这么做的，只不过jdk帮我们做好了。
+	
+	
+二 编译器问题	
+	有的例子是这样子的：
+	#include "stdafx.h"  
+	#include <stdio.h>  
+	#include <winsock2.h>  
+	#pragma comment(lib,"ws2_32.lib") 
+	一开始我用了，但发现编译不通过，"stdafx.h"  和#pragma 在gcc里根本就木有，原来这些都是vc的语法，这个也pass了。
+	
+	
+三  ws2_32.lib问题
+	后来找了个纯C的：
+	#include<winsock2.h>
+	#include<stdio.h>
+	但是编译时报错了：
+	VARCHARserver.c:12: undefined reference to `WSAStartup@8'
+	VARCHARserver.c:17: undefined reference to `WSACleanup@0'
+	VARCHARserver.c:20: undefined reference to `socket@12'
+	VARCHARserver.c:22: undefined reference to `htonl@4'
+	VARCHARserver.c:24: undefined reference to `htons@4'
+	VARCHARserver.c:26: undefined reference to `bind@12'
+	VARCHARserver.c:30: undefined reference to `listen@8'
+	VARCHARserver.c:38: undefined reference to `accept@12'
+	VARCHARserver.c:49: undefined reference to `send@16'
+	VARCHARserver.c:55: undefined reference to `recv@16'
+	VARCHARserver.c:57: undefined reference to `closesocket@4'
+	
+	查一些资料，大概意思就是，gcc缺少库“ws2_32.lib”，需要在编译时指定：
+	
+	
+ 	右击工程 properties-->C/C++ Bulid-->Settings-->Tool Settings-->MinGW C++ Linker-->Libraries ，在这里面添加wsock32。
+	搞定了，编译通过了。	
+	
+	
+	
+	https://blog.csdn.net/u011606457/article/details/51799396
+	
+
+

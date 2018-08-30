@@ -7,19 +7,15 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "classes/sort/Sort.h"
+#include "socket/csocket.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
 
-	int num[] = { 9, 6, 3, 5, 7, 8, 1 };
-	int length = sizeof(num) / sizeof(int);
-	swapSort(num, length);
+	int status = create_socket_server();
 
-	for (int i = 0; i < length; i++) {
-		printf("%d",num[i]);
-	}
+	cout<<status<<endl;
 
 	return 0;
 }
