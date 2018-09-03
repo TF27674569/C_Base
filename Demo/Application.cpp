@@ -7,15 +7,15 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "socket/csocket.h"
+#include "socket/client/socket_client.h"
 
 using namespace std;
 
 int main(int argc, char **argv) {
-
-	int status = create_socket_server();
-
-	cout<<status<<endl;
-
+	InitWSA_();
+	CreateSocket_();
+	ConnectSocket();
+	SendOrRead();
+	system("pause");
 	return 0;
 }
